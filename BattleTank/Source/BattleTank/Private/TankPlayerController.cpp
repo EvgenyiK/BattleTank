@@ -4,10 +4,7 @@
 #include "TankPlayerController.h"
 #include "BattleTank/BattleTank.h"
 
-ATank* ATankPlayerController::GetControlledTank() const
-{
-	return Cast<ATank>(GetPawn());
-}
+
 
 void ATankPlayerController::BeginPlay()
 {
@@ -29,5 +26,28 @@ void ATankPlayerController::BeginPlay()
 void ATankPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	UE_LOG(LogTemp, Warning, TEXT("Player controller ticking"));
+	AimTowardsCrosshair();
+}
+
+ATank* ATankPlayerController::GetControlledTank() const
+{
+	return Cast<ATank>(GetPawn());
+}
+
+void ATankPlayerController::AimTowardsCrosshair()
+{
+	//if (!GetControlledTank()) { return; }
+	
+	FVector HitLocation; // out parametr
+	if (GetSightRayHitLocation(HitLocation))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("HitLocation : %s"), *HitLocation.ToString());
+	}
+	
+}
+
+bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitlocation) const
+{
+	OutHitlocation = FVector(1.0);
+	return true;
 }
