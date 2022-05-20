@@ -36,7 +36,7 @@ ATank* ATankPlayerController::GetControlledTank() const
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
-	//if (!GetControlledTank()) { return; }
+	if (!GetControlledTank()) { return; }
 	
 	FVector HitLocation; // out parametr
 	if (GetSightRayHitLocation(HitLocation))
@@ -48,9 +48,26 @@ void ATankPlayerController::AimTowardsCrosshair()
 
 bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitlocation) const
 {
-	int32 ViewPortSizeX = 1, ViewPortSizeY = 1;
-	//GetViewPortSize(ViewPortSizeX,ViewPortSizeY);
+	int32 ViewPortSizeX, ViewPortSizeY;
+	GetViewportSize(ViewPortSizeX,ViewPortSizeY);
 	auto ScreenLocation = FVector2D(ViewPortSizeX * CrosshairXLocation, ViewPortSizeY * CrosshairYLocation);
-	UE_LOG(LogTemp, Warning, TEXT("ScreenLocation: %s"), *ScreenLocation.ToString());
+
+	FVector LookDirection;
+	if (GetLookDirection(ScreenLocation, LookDirection))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *LookDirection.ToString());
+	}
+	
 	return true;
+}
+
+
+bool ATankPlayerController::GetLookDirection(FVector2D& ScreenLocation, FVector& LookDirection) const
+{
+	FVector CameraWorldLocation;// To be discarded
+ return	DeprojectScreenPositionToWorld(
+		ScreenLocation.X,
+		ScreenLocation.Y,
+		CameraWorldLocation,
+		LookDirection);
 }
