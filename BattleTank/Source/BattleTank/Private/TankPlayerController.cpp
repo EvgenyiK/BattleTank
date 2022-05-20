@@ -41,13 +41,16 @@ void ATankPlayerController::AimTowardsCrosshair()
 	FVector HitLocation; // out parametr
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("HitLocation : %s"), *HitLocation.ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *HitLocation.ToString());
 	}
 	
 }
 
 bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitlocation) const
 {
-	OutHitlocation = FVector(1.0);
+	int32 ViewPortSizeX = 1, ViewPortSizeY = 1;
+	//GetViewPortSize(ViewPortSizeX,ViewPortSizeY);
+	auto ScreenLocation = FVector2D(ViewPortSizeX * CrosshairXLocation, ViewPortSizeY * CrosshairYLocation);
+	UE_LOG(LogTemp, Warning, TEXT("ScreenLocation: %s"), *ScreenLocation.ToString());
 	return true;
 }
