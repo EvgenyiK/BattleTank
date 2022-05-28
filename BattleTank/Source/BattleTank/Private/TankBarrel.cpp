@@ -5,5 +5,5 @@
 
 void UTankBarrel::Elevate(float DegreesPerSecond)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Barrel eleva"))
+	UE_LOG(LogTemp, Warning, TEXT("Barrel - Elevate() called at speed %f"), DegreesPerSecond)
 }
