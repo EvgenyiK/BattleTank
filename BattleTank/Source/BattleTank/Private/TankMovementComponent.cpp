@@ -6,20 +6,22 @@
 
 void UTankMovementComponent::InternMoveForward(float Throw)
 {
-	//auto Time = GetWorld()->GetTimeSeconds();
-	UE_LOG(LogTemp, Warning, TEXT("Intend move forward throw: %f"),Throw);
-
+	if (!LeftTrack || !RightTrack)
+	{
+		return;
+	}
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(Throw);
 }
 
+void UTankMovementComponent::InternTurnRight(float Throw)
+{
+	LeftTrack->SetThrottle(Throw);
+	RightTrack->SetThrottle(-Throw);
+}
+
 void UTankMovementComponent::Initialise(UTankTrack* LeftTrackToset, UTankTrack* RightTrackToSet)
 {
-	if (!LeftTrackToset || !RightTrackToSet)
-	{
-		return;
-	}
-
 	LeftTrack = LeftTrackToset;
 	RightTrack = RightTrackToSet;
 }
