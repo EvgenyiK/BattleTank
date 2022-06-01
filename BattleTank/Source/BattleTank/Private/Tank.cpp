@@ -14,7 +14,6 @@ ATank::ATank()
 
 	// No need to protect points as added at construction
 	TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("Aiming Component"));
-	TankMovementComponent = CreateDefaultSubobject<UTankMovementComponent>(FName("Movement Component"));
 }
 
 // Called when the game starts or when spawned
@@ -37,10 +36,10 @@ void ATank::AimAt(FVector HitLocation)
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
-void ATank::Move(float Throw)
+/*void ATank::Move(float Throw)
 {
 	TankMovementComponent->InternMoveForward(Throw);
-}
+}*/
 
 void ATank::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
