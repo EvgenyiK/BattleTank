@@ -5,7 +5,7 @@
 
 void UTankTrack::SetThrottle(float Throttle)
 {
-	if (!Throttle)
+	if (ensure(!Throttle))
 	{
 		return;
 	}
