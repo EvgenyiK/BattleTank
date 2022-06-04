@@ -5,7 +5,11 @@
 
 void UTankTrack::SetThrottle(float Throttle)
 {
-	auto ForceApplied = GetForwardVector() * Throttle * TrackMaxDrivingforce;
+	if (!Throttle)
+	{
+		return;
+	}
+	auto ForceApplied = GetForwardVector() * Throttle * TrackMaxDrivingforce;//this error throttle
 	auto ForceLocation = GetComponentLocation();
 	auto TankRoot = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent());
 	TankRoot->AddForceAtLocation(ForceApplied,ForceLocation);

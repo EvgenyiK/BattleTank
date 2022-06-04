@@ -20,7 +20,7 @@ public:
 	void Initialise(UTankBarrel* BarrelToset, UTankTurret* TurretToSet);
 
 	void AimAt(FVector HitLocation, float LaunchSpeed);
-	
+
 	
 private:
 	// Sets default values for this component's properties
