@@ -55,7 +55,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 
 void UTankAimingComponent::MoveBarrelToWards(FVector AimDirection)
 {
-	if (!ensure(Barrel && Turret))
+	if (!ensure(Barrel) || !ensure(Turret))
 	{
 		return;
 	}
