@@ -21,7 +21,7 @@ void UTankAimingComponent::Initialise(UTankBarrel* BarrelToset, UTankTurret* Tur
 	Turret = TurretToSet;
 }
 
-void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
+void UTankAimingComponent::AimAt(FVector HitLocation)
 {
 	if (!ensure(Barrel))
 	{
@@ -46,8 +46,6 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrelToWards(AimDirection);
-
-		
 	}
 	
 }

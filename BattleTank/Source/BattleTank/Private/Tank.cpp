@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Tank.h"
-#include "TankAimingComponent.h"
 #include "Projectile.h"
 #include "TankBarrel.h"
+
 
 
 // Sets default values
@@ -25,19 +25,7 @@ void ATank::BeginPlay()
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
-
-void ATank::AimAt(FVector HitLocation)
-{
-	if (!ensure(TankAimingComponent))
-	{
-		return;
-	}
-	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
-}
-
-
 
 void ATank::Fire()
 {
@@ -56,7 +44,7 @@ void ATank::Fire()
 			Barrel->GetSocketLocation(FName("Projectile")),
 			Barrel->GetSocketRotation(FName("Projectile"))
 			);
-		Projectile->LaunchProjectile(LaunchSpeed);
+		Projectile->LaunchProjectile(400000000);
 		LastFireTime = FPlatformTime::Seconds();
 	}
 }
